@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Signal Simulator</title>
+</head>
+<body>
+<h2>Traffic Signal Result</h2>
+<script>
+    // Take input from user
+    let signal = prompt("Enter signal color (red, yellow, green):").toLowerCase();
+    // Switch statement
+    switch(signal) {
+        case "red":
+            document.write("Signal: RED <br>Instruction: Stop");
+            break;
+        case "yellow":
+            document.write("Signal: YELLOW <br>Instruction: Get Ready");
+            break;
+        case "green":
+            document.write("Signal: GREEN <br>Instruction: Go");
+            break;
+        default:
+            document.write("Invalid Signal Color");
+    }
+</script>
+</body>
+</html>

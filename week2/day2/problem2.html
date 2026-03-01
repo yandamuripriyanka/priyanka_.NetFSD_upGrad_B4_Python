@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Cart Summary</title>
+</head>
+<body>
+<script type="module">
+// Product Array (Cart)
+const cart = [
+    { name: "Laptop", price: 50000, quantity: 1 },
+    { name: "Mouse", price: 500, quantity: 2 },
+    { name: "Keyboard", price: 1500, quantity: 1 }
+];
+// Exported Calculation Function
+
+export const calculateTotal = (products) => {
+    return products
+        .map(item => item.price * item.quantity)
+        .reduce((total, value) => total + value, 0);
+}
+// Using Function (Import-like usage)
+const totalAmount = calculateTotal(cart);
+// Invoice using Template Literals
+const invoice = `
+========= CART INVOICE =========
+
+${cart.map(item => `
+Product : ${item.name}
+Price   : ₹${item.price}
+Quantity: ${item.quantity}
+Subtotal: ₹${item.price * item.quantity}
+`).join("")}
+
+--------------------------------
+TOTAL AMOUNT : ₹${totalAmount}
+================================
+`;
+
+console.log(invoice);
+
+</script>
+
+</body>
+</html>

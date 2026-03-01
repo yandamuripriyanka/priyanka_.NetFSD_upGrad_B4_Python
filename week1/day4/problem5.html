@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Analysis Tool</title>
+</head>
+<body>
+<h2>Number Analysis Result</h2>
+<script>
+  // Take input from user
+    let num = Number(prompt("Enter a number:"));
+ // Check invalid input
+    if (isNaN(num)) {
+        document.write("Invalid Number");
+    }
+    else {
+        // 1️ Positive or Negative (Ternary)
+        let sign = (num >= 0) ? "Positive" : "Negative";
+        document.write("Number: " + num + "<br>");
+        document.write("Sign: " + sign + "<br>");
+        // 2️ Even or Odd (if-else)
+        if (num % 2 === 0) {
+            document.write("Parity: Even<br>");
+        } else {
+            document.write("Parity: Odd<br>");
+        }
+        // 3️ Print numbers from 1 to num
+        if (num >= 1) {
+            document.write("Numbers from 1 to " + num + ":<br>");
+            for (let i = 1; i <= num; i++) {
+                document.write(i + " ");
+            }
+        } else {
+            document.write("Loop not executed (number less than 1)");
+        }
+    }
+</script>
+</body>
+</html>

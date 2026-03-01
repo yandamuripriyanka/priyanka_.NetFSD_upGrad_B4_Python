@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Marks Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .pass {
+            color: green;
+            font-weight: bold;
+        }
+        .fail {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Student Marks Analyzer</h2>
+    <div id="output"></div>
+</div>
+<script>
+    // Store student marks
+    const marks = [75, 82, 90, 60, 45];
+    // Process marks using map()
+    const processedMarks = marks.map(mark => Number(mark));
+    // Calculate total using reduce(
+    const calculateTotal = (arr) =>
+        arr.reduce((total, mark) => total + mark, 0);
+    // Calculate average
+    const calculateAverage = (arr) =>
+        calculateTotal(arr) / arr.length;
+    // Determine pass/fail
+    const getResult = (average) =>
+        average >= 50 ? "Pass" : "Fail";
+    // Perform calculations
+    const total = calculateTotal(processedMarks);
+    const average = calculateAverage(processedMarks);
+    const result = getResult(average);
+    // Display using template literals
+    const outputMessage = `
+        <p><strong>Marks:</strong> ${processedMarks.join(", ")}</p>
+        <p><strong>Total:</strong> ${total}</p>
+        <p><strong>Average:</strong> ${average.toFixed(2)}</p>
+        <p class="${result === "Pass" ? "pass" : "fail"}">
+            <strong>Result:</strong> ${result}
+        </p>
+    `;
+    document.getElementById("output").innerHTML = outputMessage;
+</script>
+</body>
+</html>

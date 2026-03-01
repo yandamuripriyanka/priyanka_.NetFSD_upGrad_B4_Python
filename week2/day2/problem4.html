@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mini Expense Tracker</title>
+<style>
+body {
+    text-align: center;
+    background: #f2f2f2;
+    font-family: Arial;
+    padding: 20px;
+}
+input, button {
+    margin: 6px;
+    padding: 6px;
+}
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    width: 70%;
+    background: white;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+</style>
+</head>
+<body>
+<h2>Mini Expense Tracker </h2>
+<input type="text" id="title" placeholder="Expense Title">
+<input type="number" id="amount" placeholder="Amount">
+<input type="date" id="date">
+<br>
+<button onclick="addExpense()">Add Expense</button>
+<button onclick="viewExpenses()">View Expenses</button>
+<div id="expenseList"></div>
+<script>
+let db;
+// OPEN DATABASE
+let request = indexedDB.open("ExpenseDB", 1);
+// CREATE TABLE (ObjectStore)
+request.onupgradeneeded = function(event) {
+    db = event.target.result;
+    if (!db.objectStoreNames.contains("expenses")) {
+        db.createObjectStore("expenses", {
+            keyPath: "id",
+            autoIncrement: true
+        });
+        console.log("ObjectStore Created");
+    }
+};
+request.onsuccess = function(event) {
+    db = event.target.result;
+    console.log("Database opened successfully");
+    viewExpenses(); // Auto load on open
+};
+request.onerror = function(event) {
+    alert("Database failed to open!");
+    console.error(event.target.error);
+};
+// ADD EXPENSE
+function addExpense() {
+    if (!db) {
+        alert("Database not ready yet!");
+        return;
+    }
+    let title = document.getElementById("title").value.trim();
+    let amount = parseFloat(document.getElementById("amount").value);
+    let date = document.getElementById("date").value;
+    if (!title || !amount || !date) {
+        alert("Please fill all fields properly.");
+        return;
+    }
+    let transaction = db.transaction(["expenses"], "readwrite");
+    transaction.onerror = function(event) {
+        alert("Transaction Failed!");
+        console.error(event.target.error);
+    };
+    transaction.oncomplete = function() {
+        console.log("Transaction Completed");
+        viewExpenses();
+    };
+    let store = transaction.objectStore("expenses");
+    let expense = {
+        title: title,
+        amount: amount,
+        date: date
+    };
+    let addRequest = store.add(expense);
+    addRequest.onerror = function(event) {
+        alert("Error Adding Expense!");
+        console.error(event.target.error);
+    };
+    // Clear inputs
+    document.getElementById("title").value = "";
+    document.getElementById("amount").value = "";
+    document.getElementById("date").value = "";
+}
+// VIEW EXPENSES
+function viewExpenses() {
+    if (!db) return;
+    let transaction = db.transaction(["expenses"], "readonly");
+    let store = transaction.objectStore("expenses");
+    let getRequest = store.getAll();
+    getRequest.onsuccess = function() {
+        displayExpenses(getRequest.result);
+    };
+    getRequest.onerror = function(event) {
+        alert("Error Fetching Data!");
+        console.error(event.target.error);
+    };
+}
+// DELETE EXPENSE
+function deleteExpense(id) {
+    let transaction = db.transaction(["expenses"], "readwrite");
+    transaction.onerror = function() {
+        alert("Delete Transaction Failed!");
+    };
+    let store = transaction.objectStore("expenses");
+    let deleteRequest = store.delete(id);
+    deleteRequest.onsuccess = function() {
+        viewExpenses();
+    };
+    deleteRequest.onerror = function() {
+        alert("Delete Failed!");
+    };
+}
+// DISPLAY DATA
+function displayExpenses(expenses) {
+    if (expenses.length === 0) {
+        document.getElementById("expenseList").innerHTML =
+            "<p>No expenses found.</p>";
+        return;
+    }
+    let output = "<table>";
+    output += "<tr><th>Title</th><th>Amount</th><th>Date</th><th>Action</th></tr>";
+    expenses.forEach(exp => {
+        output += `
+        <tr>
+            <td>${exp.title}</td>
+            <td>₹ ${exp.amount}</td>
+            <td>${exp.date}</td>
+            <td>
+                <button onclick="deleteExpense(${exp.id})">
+                    Delete
+                </button>
+            </td>
+        </tr>`;
+    });
+    output += "</table>";
+    document.getElementById("expenseList").innerHTML = output;
+}
+</script>
+</body>
+</html>

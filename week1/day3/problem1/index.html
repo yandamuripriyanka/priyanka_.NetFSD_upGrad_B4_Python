@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Styling Assignment</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to My Webpage</h1>
+        <p>This page demonstrates CSS selectors and box model</p>
+    </header>
+
+    <!-- Section with background & border -->
+    <section class="section-box">
+        <h2>About CSS</h2>
+        <p>CSS is used to style HTML elements and control layout, colors and spacing.</p>
+    </section>
+
+    <!-- Box Model Demo -->
+    <div class="box-model">
+        <h3>Box Model Example</h3>
+        <p>This div shows margin and padding spacing.</p>
+    </div>
+
+    <!-- Day-2 Registration Form -->
+    <section class="form-area">
+        <h2>Student Registration Form</h2>
+
+        <form>
+
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your name" required>
+
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email" required>
+
+            <label>Password</label>
+            <input type="password" placeholder="Enter password" required>
+
+            <label>Gender</label>
+            <div class="radio-group">
+                <input type="radio" name="gender" required> Male
+                <input type="radio" name="gender"> Female
+            </div>
+
+            <label>Select Course</label>
+            <select required>
+                <option value="">--Choose Course--</option>
+                <option>HTML</option>
+                <option>CSS</option>
+                <option>JavaScript</option>
+                <option>Python</option>
+            </select>
+
+            <button type="submit">Register</button>
+
+        </form>
+    </section>
+
+</body>
+</html>

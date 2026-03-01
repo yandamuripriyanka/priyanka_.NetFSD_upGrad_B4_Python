@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Feedback App</title>
+    <link rel ="stylesheet" href="index.css">
+</head>
+<body>
+    <h2>Feedback Page</h2>
+    <textarea id="feedback" placeholder="Enter feedback"></textarea>
+    <br><br>
+    <button id="btn">Submit Feedback</button>
+    <p id="msg"></p>
+    <script>
+        let btn = document.getElementById("btn");
+        let feedback = document.getElementById("feedback");
+        let msg = document.getElementById("msg");
+        btn.addEventListener("click", function () {
+            let text = feedback.value;
+            if (text !== "") {
+               
+                msg.textContent = "Thank You! Your Feedback has been saved successfully!";
+                msg.style.color = "green";
+                feedback.value = "";
+            } else {
+                msg.textContent = "Please Enter Feedback!";
+                msg.style.color = "red";
+            }
+        });
+    </script>
+
+</body>
+</html>
+<!--Requirements
+Create a webpage with a “Submit Feedback” button.
+When clicked, display a confirmation message dynamically.
+Use JavaScript event listeners to handle the click event.
+ -->

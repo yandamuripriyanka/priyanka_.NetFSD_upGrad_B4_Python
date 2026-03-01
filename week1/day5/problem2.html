@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Info Display</title>
+</head>
+<body>
+<h2>User Information</h2>
+<button onclick="handleClick()">Show User Info</button>
+<div id="output"></div>
+<script>
+// Create user object
+const user = {
+    name: "Priyanka",
+    age: 22,
+    city: "Kurnool"
+};
+// Function that accepts object as parameter
+function displayUserInfo(userObj) {
+    // Access using dot notation
+    let name = userObj.name;
+    let age = userObj.age;
+    let city = userObj.city;
+    // Update DOM dynamically
+    document.getElementById("output").innerHTML =
+        "<p>Name: " + name + "</p>" +
+        "<p>Age: " + age + "</p>" +
+        "<p>City: " + city + "</p>";
+}
+// Button click handler
+function handleClick() {
+    displayUserInfo(user);
+}
+</script>
+</body>
+</html>

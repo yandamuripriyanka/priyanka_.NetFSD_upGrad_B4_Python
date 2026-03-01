@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FORMS</title>
+</head>
+<body>
+<nav>
+    <a href="home.html">Home</a> |
+    <a href="contact.html">Contact</a>
+</nav>
+<h1>Registration Form</h1>
+<form action="success.html">
+    <!--Name Field-->
+    <label for="name">Name</label><br>
+    <input id="name" name="name" type="name"
+           placeholder="Enter Your Name" required>
+    <br>
+    <!--Email Field-->
+
+    <label for="email">Email</label><br>
+    <input id="email" name="email" type="email"
+           placeholder="Enter Your Mail" required>
+    <br>
+    <!--Password Field-->
+
+    <label for="password">Password</label><br>
+    <input id="password" name="password" type="password"
+           placeholder="Enter Your Password" required>
+    <br>
+    <!--Gender Field-->
+
+    <label>Gender</label><br>
+    <input type="radio" name="gender" value="Male" required> Male
+    <input type="radio" name="gender" value="Female" required> Female
+    <br>
+    <!--Gender Field-->
+    <label for="course">Courses</label><br>
+    <input id="course" name="course" list="courselist"
+           placeholder="Select a course" required>
+    <datalist id="courselist">
+        <option value="HTML">
+        <option value="CSS">
+        <option value="JS">
+        <option value="JAVA">
+    </datalist>
+   <br><br>
+    <!--Register-->
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>

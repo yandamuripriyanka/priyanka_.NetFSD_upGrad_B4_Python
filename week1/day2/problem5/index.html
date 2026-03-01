@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Enrollment</title>
+</head>
+<body>
+
+<header>
+    <h1>Online Learning Platform</h1>
+</header>
+
+<main>
+
+    <!-- Progress Section -->
+    <section>
+        <h2>Enrollment Completion</h2>
+        <!-- static progress value -->
+        <progress value="70" max="100"></progress>
+        <p>70% completed</p>
+    </section>
+
+    <hr>
+
+    <!-- Form Section -->
+    <section>
+        <h2>Enroll in a Course</h2>
+
+        <form action="#" method="post">
+
+            <!-- Name -->
+            <label for="name">Full Name:</label><br>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+
+            <!-- Email -->
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+            <br><br>
+
+            <!-- Course Suggestion using datalist -->
+            <label for="course">Select Course:</label><br>
+            <input list="courses" id="course" name="course" placeholder="Start typing..." required>
+
+            <datalist id="courses">
+                <option value="HTML">
+                <option value="CSS">
+                <option value="JavaScript">
+                <option value="Python">
+                <option value="React">
+                <option value="Data Science">
+            </datalist>
+            <br><br>
+
+            <!-- Age -->
+            <label for="age">Age:</label><br>
+            <input type="number" id="age" name="age" min="15" max="60" required>
+            <br><br>
+
+            <!-- Skill Range -->
+            <label for="skill">Your Skill Level:</label><br>
+            Beginner
+            <input type="range" id="skill" name="skill" min="0" max="100" value="50">
+            Advanced
+            <br><br>
+
+            <!-- Meter Indicator -->
+            <label>Skill Level Indicator:</label><br>
+            <meter value="50" min="0" max="100" low="30" high="70" optimum="90"></meter>
+            <br><br>
+
+            <!-- Submit -->
+            <input type="submit" value="Enroll">
+
+        </form>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Online Learning Platform</p>
+</footer>
+
+</body>
+</html>

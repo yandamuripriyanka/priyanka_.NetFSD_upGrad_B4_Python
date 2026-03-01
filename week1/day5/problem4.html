@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Student Profile Manager</title>
+    <style>
+        #studentProfile {
+            width: 260px;
+            padding: 15px;
+            border: 2px solid #000;
+            background-color: #f2f2f2;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student Profile Manager</h2>
+     <!-- Styled div to display student info -->
+    <div id="studentProfile"></div>
+    <br>
+    <!-- Input to update marks -->
+    <input type="number" id="marksInput" placeholder="Enter new marks">
+    <button id="updateButton">Update Marks</button>
+    <script>
+        //  Global Student Object
+        var student = {
+            name: "priya",
+            rollNo: 101,
+            marks: 85
+        };
+        //  Function to display student details
+        function updateStudentProfile(studentObj) {
+            var displayData =
+                "Name: " + studentObj.name + "<br>" +
+                "Roll No: " + studentObj.rollNo + "<br>" +
+                "Marks: " + studentObj.marks;
+            document.getElementById("studentProfile").innerHTML = displayData;
+        }
+        //  Function to update marks
+        function updateMarks(newMarks) {
+            student.marks = newMarks;   // Update global object
+            updateStudentProfile(student); // Refresh display
+        }
+        //  Event Listener (No inline JavaScript)
+        document.getElementById("updateButton").addEventListener("click", function() {
+            var newValue = document.getElementById("marksInput").value;
+            updateMarks(newValue);
+        });
+        // Initial display when page loads
+        updateStudentProfile(student);
+    </script>
+</body>
+</html>

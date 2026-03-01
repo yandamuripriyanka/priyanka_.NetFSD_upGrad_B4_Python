@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personal Notes Saver</title>
+</head>
+<body>
+    <h2>My Daily Notes</h2>
+    <!-- Textarea -->
+    <textarea id="noteArea" rows="10" cols="40"
+    placeholder="Write your note here..."></textarea>
+    <br><br>
+    <!-- Inline onclick buttons -->
+    <button onclick="saveNote()">Save</button>
+    <button onclick="clearNote()">Clear</button>
+    <script>
+    // Runs automatically when page fully loads
+        window.onload = function() {
+            loadNote();
+        };
+        // Save note to localStorage
+        function saveNote() {
+            var noteText = document.getElementById("noteArea").value;
+            localStorage.setItem("myNote", noteText);
+            alert("Note Saved Successfully!");
+        }
+        // Load note from localStorage
+         function saveNote() {
+            var noteText = document.getElementById("noteArea").value;
+            localStorage.setItem("myNote", noteText);
+            alert("Note Saved!");
+        }
+        // Clear note
+        function clearNote() {
+            localStorage.removeItem("myNote");
+
+            document.getElementById("noteArea").value = "";
+            alert("Note Cleared!");
+        }
+        </script>
+</body>
+</html>
+<!--    
+A textarea for writing notes.
+A Save button
+A Clear button.
+Notes must:
+Be stored in localStorage
+Automatically load when the page refreshes
+Display stored note on page load.
+-->

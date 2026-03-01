@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Product Search</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<h2>Mini Product Search App</h2>
+<input type="text" id="searchInput" placeholder="Search products...">
+<div id="productContainer"></div>
+<script>
+    const searchInput = document.getElementById("searchInput");
+const productContainer = document.getElementById("productContainer");
+//  State (Product Data)
+const products = [
+    { id: 1, name: "Laptop" },
+    { id: 2, name: "Mobile Phone" },
+    { id: 3, name: "Headphones" },
+    { id: 4, name: "Smart Watch" },
+    { id: 5, name: "Keyboard" },
+    { id: 6, name: "Mouse" }
+];
+// ✅ Render Products
+function renderProducts(productList) {
+    productContainer.innerHTML = "";
+    if (productList.length === 0) {
+        productContainer.innerHTML =
+            `<p class="no-result">No Results Found</p>`;
+        return;
+    }
+    productList.forEach(product => {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.textContent = product.name;
+        productContainer.appendChild(div);
+    });
+}
+//  Filter Logic
+function filterProducts(searchText) {
+    const filtered = products.filter(product =>
+        product.name
+            .toLowerCase()
+            .includes(searchText.toLowerCase())
+    );
+    renderProducts(filtered);
+}
+//  Real-Time Search Event
+searchInput.addEventListener("input", (e) => {
+    filterProducts(e.target.value);
+})
+//  Initial Load
+renderProducts(products);
+</script>
+</body>
+</html>

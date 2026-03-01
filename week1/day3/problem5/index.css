@@ -1,0 +1,86 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+/* Layout */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar h2 {
+    margin-bottom: 20px;
+}
+.sidebar a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+.sidebar a:hover {
+    background: #34495e;
+}
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background: #f4f6f8;
+}
+.main-content h1 {
+    margin-bottom: 20px;
+}
+/* Cards */
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.card {
+    flex: 1 1 200px;
+    background: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+/* Tablet */
+@media (max-width: 900px) {
+    .cards {
+        justify-content: center;
+    }
+}
+/* Mobile Layout */
+@media (max-width: 600px) {
+    /* Sidebar becomes top nav */
+    .dashboard {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .sidebar h2 {
+        display: none;
+    }
+    .sidebar a {
+        margin: 0;
+        padding: 12px;
+    }
+     /* Cards stacked vertically */
+    .cards {
+        flex-direction: column;
+    }
+}
